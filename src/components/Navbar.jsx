@@ -1,20 +1,32 @@
 import { useState } from "react";
 
 const Navbar = () => {
-	const [btnText, setBtnText] = useState("Turn on Dark Mode")
+	const [btnText, setBtnText] = useState(() => {
+		return localStorage.getItem("darkMode") === "true" ? "Turn on Light Mode" : "Turn on Dark Mode";
+	});
+	const html = document.documentElement;
+	if (localStorage.getItem("darkMode") === "true") {
+		html.classList.add("dark");
+	} else {
+		html.classList.remove("dark");
+	}
 	const toggleDark = () => {
-		const html = document.querySelector('html')
-		html.classList.toggle("dark");
-		html.classList.contains("dark") ? setBtnText("Turn On Light Mode") : setBtnText("Turn on Dark Mode")
+		const isDark = html.classList.contains("dark")
+		if (isDark) {
+			html.classList.remove("dark");
+			setBtnText("Turn on Dark Mode");
+			localStorage.setItem("darkMode", false);
+		} else {
+			html.classList.add("dark");
+			setBtnText("Turn on Light Mode");
+			localStorage.setItem("darkMode", true);
+		}
 	};
 	return (
 		<header className="text-gray-600 border-b border-b-slate-400 dark:border-b-slate-600 bg-slate-200 dark:text-gray-400 dark:bg-gray-900 body-font">
 			<div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
 				<a className="flex title-font font-medium items-center dark:text-white text-gray-900 mb-4 md:mb-0">
-					<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-10 h-10 text-white p-2 bg-red-500 rounded-full" viewBox="0 0 24 24">
-						<path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-					</svg>
-					<span className="ml-3 text-xl">Tailblocks</span>
+					<span className="ml-3 text-xl">TextUtils</span>
 				</a>
 				<nav className="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400 dark:md:border-gray-700 flex flex-wrap items-center text-base justify-center">
 					<a className="mr-5 hover:text-gray-900 dark:hover:text-white cursor-pointer">First Link</a>
