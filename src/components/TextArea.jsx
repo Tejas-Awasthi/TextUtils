@@ -10,15 +10,21 @@ const TextArea = (props) => {
 	};
 	const uppercase = () => {
 		setText(text.toUpperCase());
+		props.showModalProp(true);
+		props.setMessage("Uppercase Text Style Applied!");
 	};
 	const lowercase = () => {
 		setText(text.toLowerCase());
+		props.showModalProp(true);
+		props.setMessage("Lowercase Text Style Applied!");
 	};
 	const capitalize = () => {
 		let capitalized = text.split(" ").map((element) => {
 			return element.charAt(0).toUpperCase() + element.slice(1);
 		});
 		setText(capitalized.join(" "));
+		props.showModalProp(true);
+		props.setMessage("Capitalize Text Style Applied!");
 	};
 	const alternate = () => {
 		let newText = "";
@@ -28,6 +34,8 @@ const TextArea = (props) => {
 			toggle = !toggle;
 		}
 		setText(newText);
+		props.showModalProp(true);
+		props.setMessage("Alternate Text Style Applied!");
 	};
 	const inverse = () => {
 		let newText = "";
@@ -36,6 +44,8 @@ const TextArea = (props) => {
 			newText += ch === ch.toUpperCase() ? ch.toLowerCase() : ch.toUpperCase();
 		}
 		setText(newText);
+		props.showModalProp(true);
+		props.setMessage("Inverse Text Style Applied!");
 	};
 	const countWords = (newText) => {
 		let words = newText.split(" ").filter((element) => {
@@ -49,14 +59,14 @@ const TextArea = (props) => {
 		console.log(URL.createObjectURL(file));
 		a.href = URL.createObjectURL(file);
 		a.download = "text.txt";
+		props.showModalProp(true);
+		props.setMessage("Download Started!");
 	};
 	const copy = () => {
 		navigator.clipboard.writeText(text);
 
 		props.showModalProp(true);
-		setTimeout(() => {
-			props.showModalProp(false);
-		}, 2700);
+		props.setMessage("Copied to Clipboard!");
 	};
 
 	const btnClass = "w-full cursor-pointer text-white bg-slate-500 border-0 py-2 px-2 focus:outline-none hover:bg-slate-600 rounded text-sm md:text-base lg:text-lg overflow-hidden transition-colors duration-150";

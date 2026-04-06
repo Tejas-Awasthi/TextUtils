@@ -1,13 +1,8 @@
-import { useState } from "react";
-
 const Alert = (props) => {
 	// const [showModal, setShowModal] = useState(true);
 	const hideModal = () => {
 		props.showModalProp1(false);
 	};
-	// setTimeout(() => {
-	// 	hideModal();
-	// }, 3000);
 	return (
 		<div
 			role="alert"
