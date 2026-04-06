@@ -2,28 +2,43 @@ import { useState } from "react";
 import "./App.css";
 import TextArea from "./components/TextArea";
 import Navbar from "./components/Navbar";
+import Alert from "./components/Alert";
 
 function App() {
-  return (
-    <>
-      <Navbar />
-      <section className="dark:text-gray-600 dark:bg-slate-900 bg-slate-300 text-gray-800 body-font relative min-h-screen">
-        <div className="container px-4 sm:px-5 py-10 sm:py-16 md:py-24 mx-auto">
-          <div className="flex flex-col text-center w-full mb-6 sm:mb-8">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-medium mb-3 dark:text-slate-200 text-slate-800">
-              TextUtils
-            </h1>
-            <p className="max-w-lg dark:text-slate-300 text-slate-700 mx-auto leading-relaxed text-lg sm:text-2xl">
-              We do what you want.
-            </p>
-          </div>
-          <div className="w-full sm:w-5/6 md:w-2/3 mx-auto">
-            <TextArea />
-          </div>
-        </div>
-      </section>
-    </>
-  );
+	const [showModal, setShowModal] = useState(false);
+	const [opacity, setOpacity] = useState(0);
+	const displayModal = (flag) => {
+
+		if (flag) {
+			setShowModal(flag);
+			setTimeout(() => {
+				setOpacity(100);
+			}, 0);
+		} else {
+			setOpacity(0);
+			setTimeout(() => {
+				setShowModal(flag);
+			}, 300);
+		}
+	};
+	return (
+		<>
+			<Navbar />
+			{/* ALERT */}
+			<div className="container font-inter relative h-20 mx-auto">{showModal && <Alert opacity={opacity} message="Copied to Clipboard!" showModalProp1={displayModal} />}</div>
+			<section className="dark:text-gray-600 dark:bg-slate-900 bg-slate-300 text-gray-800 font-inter body-font relative min-h-screen">
+				<div className="container sm:px-5 p-4 mx-auto">
+					<div className="flex flex-col text-center w-full mb-6 sm:mb-8">
+						<h1 className="text-3xl sm:text-4xl md:text-5xl font-medium mb-3 dark:text-slate-200 text-slate-800">TextUtils</h1>
+						<p className="max-w-lg dark:text-slate-300 text-slate-700 mx-auto leading-relaxed text-lg sm:text-2xl">We do what you want.</p>
+					</div>
+					<div className="w-full sm:w-5/6 md:w-2/3 mx-auto">
+						<TextArea showModalProp={displayModal} />
+					</div>
+				</div>
+			</section>
+		</>
+	);
 }
 
 export default App;
