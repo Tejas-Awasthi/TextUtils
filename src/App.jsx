@@ -28,12 +28,43 @@ function App() {
 		}
 	};
 	const [message, setMessage] = useState("");
+	const defaultTheme = {
+		"btnBg": "bg-white dark:bg-slate-800",
+		"navBg": "dark:bg-gray-900 bg-slate-200",
+		"bodyBg": "dark:bg-slate-700 bg-slate-100"
+	}
+	const getBgClass = (key)=>{
+		if (localStorage.getItem(key) !== null) {
+			return localStorage.getItem(key)
+		} else {
+			return defaultTheme[key]
+		}
+	}
+	const setColor = (color) =>{
+		setBtnBgClass(`bg-${color}-100 dark:bg-${color}-700 hover:bg-${color}-300 dark:hover:bg-${color}-800`);
+		setNavBgClass(`dark:bg-${color}-900 bg-${color}-200`);
+		setBodyColor(`dark:bg-${color}-700 bg-${color}-100`);
+		localStorage.setItem("btnBg", `bg-${color}-100 dark:bg-${color}-700 hover:bg-${color}-300 dark:hover:bg-${color}-800`);
+		localStorage.setItem("navBg", `dark:bg-${color}-900 bg-${color}-200`);
+		localStorage.setItem("bodyBg", `dark:bg-${color}-700 bg-${color}-100`);
+	}
+	const [btnBgClass, setBtnBgClass] = useState(getBgClass("btnBg"));
+	const [navBgClass, setNavBgClass] = useState(getBgClass("navBg"));
+	const [bodyColor, setBodyColor] = useState(getBgClass("bodyBg"));
+	document.body.classList = bodyColor;
+	const colorSwitchClick = (e) => {
+		let colorClass = Array.from(e.target.classList).find((element) => {
+			return element.startsWith("bg-");
+		});
+		let color = colorClass.split("-")[1];
+		setColor(color)
+	};
 	return (
 		<>
-			<Navbar />
+			<Navbar colorSwitchClick={colorSwitchClick} btnBgClass={btnBgClass} navBgClass={navBgClass} />
 			{/* ALERT */}
 			<div className="container font-inter relative h-20 mx-auto">{message && <Alert opacity={opacity} message={message} showModalProp1={displayModal} />}</div>
-			<section className="dark:text-gray-600 dark:bg-slate-900 bg-slate-300 text-gray-800 font-inter body-font relative min-h-screen">
+			<section className={`dark:text-gray-600 ${bodyColor} text-gray-800 font-inter body-font relative min-h-screen`}>
 				<div className="container sm:px-5 p-4 mx-auto">
 					<div className="flex flex-col text-center w-full mb-6 sm:mb-8">
 						<h1 className="text-3xl sm:text-4xl md:text-5xl font-medium mb-3 dark:text-slate-200 text-slate-800">TextUtils</h1>

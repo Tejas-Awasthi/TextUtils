@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const Navbar = () => {
+const Navbar = ({ colorSwitchClick, navBgClass, btnBgClass }) => {
 	const [btnText, setBtnText] = useState(() => {
 		return localStorage.getItem("darkMode") === "true" ? "Light Mode" : "Dark Mode";
 	});
@@ -24,24 +24,24 @@ const Navbar = () => {
 			localStorage.setItem("darkMode", true);
 		}
 	};
-
+	
 
 	return (
-		<header className="text-gray-600 font-inter border-b border-b-slate-400 dark:border-b-slate-600 bg-slate-200 dark:text-gray-400 dark:bg-gray-900 body-font">
+		<header className={`text-gray-600 font-inter border-b border-b-slate-400 dark:border-b-slate-600 dark:text-gray-400 ${navBgClass} body-font`}>
 			<div className="container mx-auto flex flex-row items-center justify-between px-4 py-3 sm:px-5 sm:py-4">
 				<a className="flex title-font font-semibold items-center dark:text-white text-gray-900 text-lg sm:text-xl select-none">TextUtils</a>
 
 				<div className="container flex justify-end">
 					<div className="flex px-2.5 h-8 rounded-3xl bg-slate-600 items-center mr-4 gap-4">
-						<div className={`w-5 h-5 rounded-full bg-yellow-500 cursor-pointer ${checked}`}></div>
-						<div className="w-5 h-5 rounded-full bg-cyan-500 cursor-pointer"></div>
-						<div className="w-5 h-5 rounded-full bg-emerald-500 cursor-pointer"></div>
-						<div className="w-5 h-5 rounded-full bg-slate-500 cursor-pointer"></div>
-						<div className="w-5 h-5 rounded-full bg-indigo-500 cursor-pointer"></div>
-						<div className="w-5 h-5 rounded-full bg-pink-500 cursor-pointer"></div>
+						<div className={`w-5 h-5 rounded-full bg-yellow-500 cursor-pointer`} onClick={colorSwitchClick}></div>
+						<div className={`w-5 h-5 rounded-full bg-cyan-500 cursor-pointer`} onClick={colorSwitchClick}></div>
+						<div className={`w-5 h-5 rounded-full bg-emerald-500 cursor-pointer`} onClick={colorSwitchClick}></div>
+						<div className={`w-5 h-5 rounded-full bg-slate-500 cursor-pointer`} onClick={colorSwitchClick}></div>
+						<div className={`w-5 h-5 rounded-full bg-indigo-500 cursor-pointer`} onClick={colorSwitchClick}></div>
+						<div className={`w-5 h-5 rounded-full bg-pink-500 cursor-pointer`} onClick={colorSwitchClick}></div>
 					</div>
 
-					<button className="inline-flex cursor-pointer items-center gap-1.5 bg-white dark:bg-gray-800 border border-slate-300 dark:border-slate-600 py-1.5 px-3 focus:outline-none hover:bg-slate-100 dark:hover:bg-gray-700 rounded text-sm sm:text-base transition-colors duration-150 whitespace-nowrap" id="darkBtn" onClick={toggleDark}>
+					<button className={`inline-flex cursor-pointer items-center gap-1.5 ${btnBgClass} border border-slate-300 dark:border-slate-600 py-1.5 px-3 focus:outline-none rounded text-sm sm:text-base transition-colors duration-150 whitespace-nowrap`} id="darkBtn" onClick={toggleDark}>
 						{btnText === "Light Mode" ? (
 							<svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
 								<circle cx="12" cy="12" r="5" />
