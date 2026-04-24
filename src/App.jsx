@@ -5,14 +5,12 @@ import Navbar from "./components/Navbar";
 import Alert from "./components/Alert";
 
 function App() {
-	const [showModal, setShowModal] = useState(false);
 	const [opacity, setOpacity] = useState(0);
 	const [timeoutId, setTimeoutId] = useState(null);
 	const displayModal = (flag) => {
 		if (flag) {
 			if (timeoutId) clearTimeout(timeoutId);
 
-			setShowModal(flag);
 			setTimeout(() => {
 				setOpacity(100);
 			}, 0);
@@ -25,7 +23,7 @@ function App() {
 		} else {
 			setOpacity(0);
 			setTimeout(() => {
-				setShowModal(false);
+				setMessage("");
 			}, 300);
 		}
 	};
@@ -34,7 +32,7 @@ function App() {
 		<>
 			<Navbar />
 			{/* ALERT */}
-			<div className="container font-inter relative h-20 mx-auto">{showModal && <Alert opacity={opacity} message={message} showModalProp1={displayModal} />}</div>
+			<div className="container font-inter relative h-20 mx-auto">{message && <Alert opacity={opacity} message={message} showModalProp1={displayModal} />}</div>
 			<section className="dark:text-gray-600 dark:bg-slate-900 bg-slate-300 text-gray-800 font-inter body-font relative min-h-screen">
 				<div className="container sm:px-5 p-4 mx-auto">
 					<div className="flex flex-col text-center w-full mb-6 sm:mb-8">

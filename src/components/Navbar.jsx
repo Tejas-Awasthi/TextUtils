@@ -25,24 +25,36 @@ const Navbar = () => {
 		}
 	};
 
+
 	return (
 		<header className="text-gray-600 font-inter border-b border-b-slate-400 dark:border-b-slate-600 bg-slate-200 dark:text-gray-400 dark:bg-gray-900 body-font">
 			<div className="container mx-auto flex flex-row items-center justify-between px-4 py-3 sm:px-5 sm:py-4">
 				<a className="flex title-font font-semibold items-center dark:text-white text-gray-900 text-lg sm:text-xl select-none">TextUtils</a>
 
-				<button className="inline-flex cursor-pointer items-center gap-1.5 bg-white dark:bg-gray-800 border border-slate-300 dark:border-slate-600 py-1.5 px-3 focus:outline-none hover:bg-slate-100 dark:hover:bg-gray-700 rounded text-sm sm:text-base transition-colors duration-150 whitespace-nowrap" id="darkBtn" onClick={toggleDark}>
-					{btnText === "Light Mode" ? (
-						<svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-							<circle cx="12" cy="12" r="5" />
-							<path strokeLinecap="round" d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
-						</svg>
-					) : (
-						<svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-							<path strokeLinecap="round" strokeLinejoin="round" d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z" />
-						</svg>
-					)}
-					{btnText}
-				</button>
+				<div className="container flex justify-end">
+					<div className="flex px-2.5 h-8 rounded-3xl bg-slate-600 items-center mr-4 gap-4">
+						<div className={`w-5 h-5 rounded-full bg-yellow-500 cursor-pointer ${checked}`}></div>
+						<div className="w-5 h-5 rounded-full bg-cyan-500 cursor-pointer"></div>
+						<div className="w-5 h-5 rounded-full bg-emerald-500 cursor-pointer"></div>
+						<div className="w-5 h-5 rounded-full bg-slate-500 cursor-pointer"></div>
+						<div className="w-5 h-5 rounded-full bg-indigo-500 cursor-pointer"></div>
+						<div className="w-5 h-5 rounded-full bg-pink-500 cursor-pointer"></div>
+					</div>
+
+					<button className="inline-flex cursor-pointer items-center gap-1.5 bg-white dark:bg-gray-800 border border-slate-300 dark:border-slate-600 py-1.5 px-3 focus:outline-none hover:bg-slate-100 dark:hover:bg-gray-700 rounded text-sm sm:text-base transition-colors duration-150 whitespace-nowrap" id="darkBtn" onClick={toggleDark}>
+						{btnText === "Light Mode" ? (
+							<svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+								<circle cx="12" cy="12" r="5" />
+								<path strokeLinecap="round" d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+							</svg>
+						) : (
+							<svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+								<path strokeLinecap="round" strokeLinejoin="round" d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z" />
+							</svg>
+						)}
+						{btnText}
+					</button>
+				</div>
 			</div>
 		</header>
 	);
