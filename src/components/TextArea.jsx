@@ -48,19 +48,21 @@ const TextArea = (props) => {
 		props.setMessage("Inverse Text Style Applied!");
 	};
 	const countWords = (newText) => {
-		let words = newText.split(" ").filter((element) => {
-			if (element != "") return element;
+		const words = newText.split(/\s+/).filter((word) => {
+			return word.length > 0;
 		});
 		setNoWords(words.length);
 	};
 	const download = () => {
-		const file = new Blob([text], { type: "text/plain" });
-		const a = document.getElementById("dwnBtn");
-		console.log(URL.createObjectURL(file));
-		a.href = URL.createObjectURL(file);
-		a.download = "text.txt";
-		props.showModalProp(true);
-		props.setMessage("Download Started!");
+		if (!disabled) {
+			const file = new Blob([text], { type: "text/plain" });
+			const a = document.getElementById("dwnBtn");
+			console.log(URL.createObjectURL(file));
+			a.href = URL.createObjectURL(file);
+			a.download = "text.txt";
+			props.showModalProp(true);
+			props.setMessage("Download Started!");
+		}
 	};
 	const copy = () => {
 		navigator.clipboard.writeText(text);
@@ -69,7 +71,16 @@ const TextArea = (props) => {
 		props.setMessage("Copied to Clipboard!");
 	};
 
-	const btnClass = "w-full cursor-pointer text-white bg-slate-500 border-0 py-2 px-2 focus:outline-none hover:bg-slate-600 rounded text-sm md:text-base lg:text-lg overflow-hidden transition-colors duration-150";
+	// <button className={`col-span-2 md:col-span-2 opacity-50 ${btnClass} cursor-not-allowed! hover:bg-slate-500! `} disabled onClick={copy}>
+	let btnClass = "";
+	let disabled = true;
+	if (text.length > 0) {
+		btnClass = `w-full cursor-pointer text-white bg-${props.color}-500 border-0 py-2 px-2 focus:outline-none hover:bg-${props.color}-600 rounded text-sm md:text-base lg:text-lg overflow-hidden transition-colors duration-150`;
+		disabled = false;
+	} else {
+		btnClass = `w-full text-white opacity-50 cursor-not-allowed bg-${props.color}-500 border-0 py-2 px-2 focus:outline-none rounded text-sm md:text-base lg:text-lg overflow-hidden transition-colors duration-150`;
+		disabled = true;
+	}
 
 	return (
 		<>
@@ -85,30 +96,30 @@ const TextArea = (props) => {
 						onChange={(e) => {
 							onChange(e);
 						}}
-						className="w-full dark:bg-slate-800 bg-white bg-opacity-50 rounded border dark:border-slate-500 border-slate-300 dark:focus:border-slate-300 focus:border-slate-800 focus:ring-2 dark:focus:ring-slate-200 focus:ring-slate-900 h-48 sm:h-64 text-base outline-none dark:text-white text-black py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
+						className={`w-full dark:bg-${props.color}-800 bg-white bg-opacity-50 rounded border dark:border-slate-500 border-slate-300 dark:focus:border-slate-300 focus:border-slate-800 focus:ring-2 dark:focus:ring-slate-200 focus:ring-slate-900 h-48 sm:h-64 text-base outline-none dark:text-white text-black py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out`}
 					></textarea>
 				</div>
 
 				<div className="grid grid-cols-2 md:grid-cols-4 gap-2">
-					<button className={btnClass} onClick={uppercase}>
+					<button className={btnClass} disabled={disabled} onClick={uppercase}>
 						Uppercase
 					</button>
-					<button className={btnClass} onClick={lowercase}>
+					<button className={btnClass} disabled={disabled} onClick={lowercase}>
 						Lowercase
 					</button>
-					<button className={btnClass} onClick={capitalize}>
+					<button className={btnClass} disabled={disabled} onClick={capitalize}>
 						Capitalize
 					</button>
-					<button className={btnClass} onClick={alternate}>
+					<button className={btnClass} disabled={disabled} onClick={alternate}>
 						AlTeRnAtE
 					</button>
-					<button className={btnClass} onClick={inverse}>
+					<button className={btnClass} disabled={disabled} onClick={inverse}>
 						iNVERSE
 					</button>
-					<a id="dwnBtn" className={`${btnClass} text-center whitespace-nowrap`} onClick={download} href="#">
+					<a id="dwnBtn" className={`${btnClass} text-center whitespace-nowrap`} onClick={download}>
 						Download Text
 					</a>
-					<button className={`${btnClass} col-span-2 md:col-span-2`} onClick={copy}>
+					<button className={`col-span-2 md:col-span-2 ${btnClass}`} disabled={disabled} onClick={copy}>
 						Copy to Clipboard
 					</button>
 				</div>

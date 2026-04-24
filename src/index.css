@@ -2,7 +2,7 @@
 
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
-@source inline("{hover:,dark:,dark:hover:,}bg-{cyan,yellow,emerald,indigo,slate,pink}-{100,200,300,700,800,900}");
+@source inline("{hover:,dark:,dark:hover:,}bg-{cyan,yellow,emerald,indigo,slate,pink}-{100,200,300,600,700,800,900}");
 
 @theme {
     --font-inter: "Inter", "sans-serif";

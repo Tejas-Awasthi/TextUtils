@@ -6,7 +6,7 @@ const Alert = (props) => {
 	return (
 		<div
 			role="alert"
-			className={`absolute font-inter ${props.opacity === 100 ? 'opacity-100' : 'opacity-0'} transition-opacity ease-in-out duration-300 top-0 left-0 right-0 flex items-center gap-2 sm:gap-3 max-w-xl mx-3 sm:mx-auto my-4 
+			className={`container fixed h-15 z-1 font-inter ${props.opacity === 100 ? 'opacity-100' : 'opacity-0'} transition-opacity ease-in-out duration-300 top-0 left-0 right-0 flex items-center gap-2 sm:gap-3 max-w-xl mx-3 sm:mx-auto my-4 
   dark:bg-emerald-700 bg-green-300 border border-slate-500 rounded-2xl sm:rounded-full 
   py-2 px-4 text-black dark:text-white`}
 		>
