@@ -86,7 +86,7 @@ const TextArea = (props) => {
 		<>
 			<div className="flex font-inter flex-wrap flex-col gap-3">
 				<div className="w-full">
-					<label htmlFor="message" className="leading-7 text-center w-full block text-xl sm:text-2xl font-semibold dark:text-slate-400 text-gray-700 mb-2">
+					<label htmlFor="message" className="leading-7 text-center w-full block text-xl sm:text-2xl font-semibold dark:text-slate-200 text-gray-700 mb-2">
 						Message
 					</label>
 					<textarea

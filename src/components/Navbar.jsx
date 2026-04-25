@@ -28,10 +28,10 @@ const Navbar = ({ colorSwitchClick, navBgClass, btnBgClass }) => {
 
 	return (
 		<header className={`text-gray-600 font-inter border-b border-b-slate-400 dark:border-b-slate-600 dark:text-gray-400 ${navBgClass} body-font`}>
-			<div className="container mx-auto flex flex-row items-center justify-between px-4 py-3 sm:px-5 sm:py-4">
+			<div className="container mx-auto flex flex-col md:flex-row items-center justify-between px-4 py-3 sm:px-5 sm:py-4">
 				<a className="flex title-font font-semibold items-center dark:text-white text-gray-900 text-lg sm:text-xl select-none">TextUtils</a>
 
-				<div className="container flex justify-end">
+				<div className="container flex sm:flex-row flex-col items-center gap-3 justify-center md:justify-end">
 					<div className="flex px-2.5 h-8 rounded-3xl bg-slate-600 items-center mr-4 gap-4">
 						<div className={`w-5 h-5 rounded-full bg-yellow-500 cursor-pointer`} onClick={colorSwitchClick}></div>
 						<div className={`w-5 h-5 rounded-full bg-cyan-500 cursor-pointer`} onClick={colorSwitchClick}></div>

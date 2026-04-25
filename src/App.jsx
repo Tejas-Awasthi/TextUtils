@@ -66,7 +66,7 @@ function App() {
 			<Navbar colorSwitchClick={colorSwitchClick} btnBgClass={btnBgClass} navBgClass={navBgClass} />
 			{/* ALERT */}
 			{message && <Alert opacity={opacity} message={message} showModalProp1={displayModal} />}
-			<section className={`dark:text-gray-600 ${bodyColor} text-gray-800 font-inter body-font relative min-h-screen`}>
+			<section className={`dark:text-gray-600 ${bodyColor} mt-16 text-gray-800 font-inter body-font relative min-h-screen`}>
 				<div className="container sm:px-5 p-4 mx-auto">
 					<div className="flex flex-col text-center w-full mb-6 sm:mb-8">
 						<h1 className="text-3xl sm:text-4xl md:text-5xl font-medium mb-3 dark:text-slate-200 text-slate-800">TextUtils</h1>
